@@ -23,39 +23,41 @@
       position:sticky;
       top:0;
       z-index:1000;
-      box-shadow:0 4px 15px rgba(0,0,0,.3);
+      box-shadow:0 5px 15px rgba(0,0,0,.3);
     }
-  
+
     .header-content{
         max-width:1200px;
         margin:auto;
         display:flex;
         align-items:center;
-        justify-content:center;
-        gap:18px;
-        padding:15px 20px;
+        padding:10px 30px;
     }
     
     .header-image{
-        width:70px;
-        height:70px;
+        width:150px;
+        height:150px;
         object-fit:contain;
-        border-radius:50%;
-        background:white;
-        padding:6px;
-        box-shadow:0 3px 10px rgba(0,0,0,.25);
+        flex-shrink:0;
+    }
+    
+    .header-text{
+        flex:1;
+        text-align:center;
+        margin-right:120px; /* compensa a largura da logo para manter o texto centralizado */
     }
     
     .header-text h1{
-        font-size:32px;
+        font-size:42px;
         color:white;
+        margin-bottom:5px;
     }
     
     .header-text p{
-        margin-top:3px;
         color:#ffe6e6;
-        font-size:15px;
+        font-size:18px;
     }
+    
     .container{
       max-width:1200px;
       margin:auto;
@@ -167,14 +169,16 @@
 <body>
 
   <header>
-  <div class="header-content">
-    <img src="logo.png" alt="Sua Pizza" class="header-image">
+    <div class="header-content">
 
-    <div class="header-text">
-      <h1>Sua Pizza</h1>
-      <p>Cardápio completo</p>
+        <img src="logo.png" alt="Sua Pizza" class="header-image">
+
+        <div class="header-text">
+            <h1>Sua Pizza</h1>
+            <p>Cardápio completo</p>
+        </div>
+
     </div>
-  </div>
   </header>
 
   <div class="container">
