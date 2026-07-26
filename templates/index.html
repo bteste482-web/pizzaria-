@@ -3,430 +3,255 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pizzaria Sua pizza • Cardápio</title>
-
-  <!-- Font Awesome (ícones) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Font (tipografia mais elegante) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <title>Cardápio - Sua Pizza</title>
 
   <style>
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
+      font-family:Arial, sans-serif;
     }
 
     body{
-      background: #0b0b0b;
-      color:#f0ece3;
-      font-family: 'Inter', sans-serif;
-      line-height:1.5;
+      background:#111;
+      color:white;
     }
 
     header{
-      background: linear-gradient(145deg, #a61b1b, #7a1212);
-      padding: 2rem 1.5rem 1.8rem;
+      background:#d62828;
+      padding:25px;
       text-align:center;
       position:sticky;
       top:0;
       z-index:1000;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
-      border-bottom: 2px solid #e6b13e;
-    }
-
-    .header-wrapper{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:20px;
-    }
-
-    .header-image{
-      max-width:80px;
-      border-radius:50%;
-      border: 3px solid #f7d44a;
-      box-shadow: 0 0 20px rgba(247, 212, 74, 0.3);
-      transition: 0.3s;
-    }
-
-    .header-image:hover{
-      transform: scale(1.05) rotate(-5deg);
-      box-shadow: 0 0 30px rgba(247, 212, 74, 0.5);
     }
 
     header h1{
-      font-size: 2.8rem;
-      font-weight:700;
-      letter-spacing: 2px;
-      color: #fff9e6;
-      text-shadow: 2px 2px 0 #4a0e0e;
-    }
-
-    header h1 span{
-      color: #ffd966;
-      font-weight:300;
-      letter-spacing: 4px;
+      font-size:40px;
     }
 
     header p{
-      margin-top:6px;
-      color: #f5e3c9;
-      font-weight:400;
-      background: rgba(0,0,0,0.3);
-      display:inline-block;
-      padding: 0.25rem 1.8rem;
-      border-radius:30px;
-      backdrop-filter: blur(4px);
-      font-size:1.1rem;
-      border:1px solid #e6b13e55;
+      margin-top:8px;
+      color:#f1f1f1;
+    }
+
+    .header-image{
+      max-width:100px;
+      margin:20px auto 0;
+      border-radius:10px;
+      display:block;
     }
 
     .container{
-      max-width:1300px;
-      margin:0 auto;
-      padding: 2.5rem 1.5rem 3rem;
+      max-width:1200px;
+      margin:auto;
+      padding:30px 20px;
     }
 
     .title{
       text-align:center;
-      margin-bottom: 3rem;
-      position:relative;
+      margin-bottom:30px;
     }
 
     .title h2{
-      font-size: 3rem;
-      font-weight:700;
-      color: #f7d44a;
-      letter-spacing: -0.5px;
-      display:inline-block;
-      background: #1a1a1a;
-      padding: 0.3rem 2.5rem;
-      border-radius: 60px;
-      box-shadow: 0 4px 0 #6d2e2e;
-      border: 1px solid #3f2b1a;
-    }
-
-    .title h2 i{
-      margin-right: 14px;
-      color: #e05a5a;
+      font-size:36px;
+      color:#ffb703;
     }
 
     .menu{
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(270px,1fr));
-      gap:2rem;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px;
     }
 
     .pizza{
-      background: #171717;
-      border-radius: 28px;
+      background:#1d1d1d;
+      border-radius:15px;
       overflow:hidden;
-      transition: 0.3s ease;
-      border: 1px solid #2b2b2b;
-      box-shadow: 0 12px 18px -8px rgba(0,0,0,0.8);
-      backdrop-filter: blur(2px);
-      display:flex;
-      flex-direction:column;
+      transition:0.2s;
+      border:1px solid #2c2c2c;
     }
 
     .pizza:hover{
-      transform: translateY(-10px) scale(1.02);
-      border-color: #e6b13e;
-      box-shadow: 0 20px 30px -10px #b8860b55;
+      transform:translateY(-5px);
     }
 
-    .pizza-img{
+    .pizza img{
       width:100%;
-      height: 220px;
+      height:200px;
       object-fit:cover;
-      border-bottom: 3px solid #b8860b;
-      transition: 0.3s;
-    }
-
-    .pizza:hover .pizza-img{
-      filter: brightness(1.05) saturate(1.1);
     }
 
     .pizza-content{
-      padding: 1.5rem 1.4rem 1.8rem;
-      display:flex;
-      flex-direction:column;
-      flex:1;
+      padding:20px;
     }
 
     .pizza h3{
-      color:#f7d44a;
-      font-size:1.8rem;
-      font-weight:700;
-      letter-spacing:-0.3px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin-bottom: 6px;
-    }
-
-    .pizza h3 i{
-      font-size:1.4rem;
-      color: #d45a3a;
+      color:#ffb703;
+      margin-bottom:10px;
+      font-size:24px;
     }
 
     .pizza p{
-      color:#ccc6b5;
-      font-size:0.98rem;
-      margin: 0.5rem 0 1rem;
-      line-height:1.6;
-      flex:1;
-      padding-right: 4px;
-    }
-
-    .pizza-footer{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      margin-top: 0.5rem;
-      border-top: 1px dashed #2f2f2f;
-      padding-top: 1rem;
+      color:#ddd;
+      line-height:1.5;
     }
 
     .price{
-      font-size:1.7rem;
-      font-weight:700;
-      color: #9bde7a;
-      letter-spacing:-0.5px;
-      background: #1e2a1a;
-      padding: 0.1rem 1rem;
-      border-radius:40px;
-      border:1px solid #5f8b4a;
-      box-shadow: inset 0 0 6px #29421f;
+      margin-top:15px;
+      font-size:22px;
+      font-weight:bold;
+      color:#25D366;
     }
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      background: #25D366;
-      color:#0b0b0b;
-      font-weight:700;
-      padding: 0.6rem 1.5rem;
-      border-radius:50px;
+      display:block;
+      margin-top:18px;
+      text-align:center;
+      background:#25D366;
+      color:white;
+      padding:12px;
+      border-radius:8px;
       text-decoration:none;
+      font-weight:bold;
       transition:0.2s;
-      font-size:0.95rem;
-      border: 1px solid #1f9e4e;
-      box-shadow: 0 4px 0 #146a33;
-    }
-
-    .btn i{
-      font-size:1.2rem;
     }
 
     .btn:hover{
-      background:#2bde72;
-      transform: scale(1.02);
-      box-shadow: 0 6px 0 #146a33;
+      opacity:0.9;
     }
 
     footer{
       text-align:center;
-      padding: 2.5rem 1.5rem;
-      background: #0a0a0a;
-      border-top: 1px solid #2f2a1f;
-      color:#7a7669;
-      font-size:0.95rem;
-    }
-
-    footer i{
-      color: #b8860b;
-      margin:0 6px;
-    }
-
-    /* responsividade */
-    @media (max-width: 650px) {
-      header h1{
-        font-size:2.2rem;
-      }
-      .header-image{
-        max-width:60px;
-      }
-      .title h2{
-        font-size:2.2rem;
-        padding:0.3rem 1.2rem;
-      }
-      .pizza-footer{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:10px;
-      }
-      .btn{
-        width:100%;
-        justify-content:center;
-      }
+      padding:25px;
+      background:#000;
+      margin-top:50px;
+      color:#aaa;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="header-wrapper">
-      <img src="logo.png" alt="Sua Pizza" class="header-image">
-      <div>
-        <h1>Sua <span>Pizza</span></h1>
-        <p><i class="fas fa-fire" style="margin-right:6px;color:#f7b32b;"></i> Sabor que encanta, massa artesanal</p>
-      </div>
-      <i class="fas fa-utensils" style="font-size:2.5rem; color: #f7d44a; opacity:0.8; filter: drop-shadow(0 0 6px #f7b32b);"></i>
-    </div>
+    <img src="logo.png" alt="Sua Pizza" class="header-image">
+    <p>Cardápio completo</p>
   </header>
 
   <div class="container">
 
     <div class="title">
-      <h2><i class="fas fa-list-ul"></i> Cardápio especial</h2>
+      <h2>Nosso Cardápio</h2>
     </div>
 
     <div class="menu">
 
-      <!-- 1 -->
       <div class="pizza">
-        <img class="pizza-img" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop" alt="Calabresa">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop" alt="">
         <div class="pizza-content">
-          <h3><i class="fas fa-pepper-hot"></i> Calabresa</h3>
-          <p>Molho de tomate fresco, mussarela derretida e calabresa fatiada com toque de orégano.</p>
-          <div class="pizza-footer">
-            <span class="price">R$ 39,90</span>
-            <a class="btn" href="#"><i class="fab fa-whatsapp"></i> Pedir</a>
-          </div>
+          <h3>Calabresa</h3>
+          <p>Molho especial, mussarela e calabresa fatiada.</p>
+          <div class="price">R$ 39,90</div>
+          <a class="btn" href="#">Pedir no WhatsApp</a>
         </div>
       </div>
 
-      <!-- 2 -->
       <div class="pizza">
-        <img class="pizza-img" src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1200&auto=format&fit=crop" alt="Frango Catupiry">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1200&auto=format&fit=crop" alt="">
         <div class="pizza-content">
-          <h3><i class="fas fa-drumstick-bite"></i> Frango Catupiry</h3>
-          <p>Frango desfiado ao molho branco, coberto com generosas camadas de catupiry cremoso.</p>
-          <div class="pizza-footer">
-            <span class="price">R$ 44,90</span>
-            <a class="btn" href="#"><i class="fab fa-whatsapp"></i> Pedir</a>
-          </div>
+          <h3>Frango com Catupiry</h3>
+          <p>Frango desfiado temperado e muito catupiry.</p>
+          <div class="price">R$ 44,90</div>
+          <a class="btn" href="#">Pedir no WhatsApp</a>
         </div>
       </div>
 
-      <!-- 3 -->
       <div class="pizza">
-        <img class="pizza-img" src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1200&auto=format&fit=crop" alt="Portuguesa">
+        <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1200&auto=format&fit=crop" alt="">
         <div class="pizza-content">
-          <h3><i class="fas fa-egg"></i> Portuguesa</h3>
-          <p>Presunto, ovos fatiados, cebola roxa, ervilhas e mussarela sobre molho especial.</p>
-          <div class="pizza-footer">
-            <span class="price">R$ 46,90</span>
-            <a class="btn" href="#"><i class="fab fa-whatsapp"></i> Pedir</a>
-          </div>
+          <h3>Portuguesa</h3>
+          <p>Presunto, ovos, cebola, ervilha e mussarela.</p>
+          <div class="price">R$ 46,90</div>
+          <a class="btn" href="#">Pedir no WhatsApp</a>
         </div>
       </div>
 
-      <!-- 4 -->
       <div class="pizza">
-        <img class="pizza-img" src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=1200&auto=format&fit=crop" alt="4 Queijos">
+        <img src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=1200&auto=format&fit=crop" alt="">
         <div class="pizza-content">
-          <h3><i class="fas fa-cheese"></i> 4 Queijos</h3>
-          <p>Mussarela, parmesão, provolone e catupiry em perfeita harmonia.</p>
-          <div class="pizza-footer">
-            <span class="price">R$ 49,90</span>
-            <a class="btn" href="#"><i class="fab fa-whatsapp"></i> Pedir</a>
-          </div>
+          <h3>4 Queijos</h3>
+          <p>Mussarela, parmesão, provolone e catupiry.</p>
+          <div class="price">R$ 49,90</div>
+          <a class="btn" href="#">Pedir no WhatsApp</a>
         </div>
       </div>
 
-      <!-- 5 -->
       <div class="pizza">
-        <img class="pizza-img" src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=80&w=1200&auto=format&fit=crop" alt="Bacon">
+        <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=80&w=1200&auto=format&fit=crop" alt="">
         <div class="pizza-content">
-          <h3><i class="fas fa-bacon"></i> Bacon</h3>
-          <p>Bacon crocante defumado, mussarela e um toque de cheddar.</p>
-          <div class="pizza-footer">
-            <span class="price">R$ 47,90</span>
-            <a class="btn" href="#"><i class="fab fa-whatsapp"></i> Pedir</a>
-          </div>
+          <h3>Bacon</h3>
+          <p>Muito bacon crocante e queijo mussarela.</p>
+          <div class="price">R$ 47,90</div>
+          <a class="btn" href="#">Pedir no WhatsApp</a>
         </div>
       </div>
 
-      <!-- 6 -->
       <div class="pizza">
-        <img class="pizza-img" src="https://images.unsplash.com/photo-1511689660979-10d2b1aada49?q=80&w=1200&auto=format&fit=crop" alt="Marguerita">
+        <img src="https://images.unsplash.com/photo-1511689660979-10d2b1aada49?q=80&w=1200&auto=format&fit=crop" alt="">
         <div class="pizza-content">
-          <h3><i class="fas fa-leaf"></i> Marguerita</h3>
-          <p>Tomate fresco, manjericão orgânico e mussarela de búfala.</p>
-          <div class="pizza-footer">
-            <span class="price">R$ 41,90</span>
-            <a class="btn" href="#"><i class="fab fa-whatsapp"></i> Pedir</a>
-          </div>
+          <h3>Marguerita</h3>
+          <p>Tomate, manjericão fresco e mussarela.</p>
+          <div class="price">R$ 41,90</div>
+          <a class="btn" href="#">Pedir no WhatsApp</a>
         </div>
       </div>
 
-      <!-- 7 -->
       <div class="pizza">
-        <img class="pizza-img" src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?q=80&w=1200&auto=format&fit=crop" alt="Coração">
+        <img src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?q=80&w=1200&auto=format&fit=crop" alt="">
         <div class="pizza-content">
-          <h3><i class="fas fa-heart"></i> Coração</h3>
-          <p>Coração de frango temperado com ervas, cebola e queijo derretido.</p>
-          <div class="pizza-footer">
-            <span class="price">R$ 52,90</span>
-            <a class="btn" href="#"><i class="fab fa-whatsapp"></i> Pedir</a>
-          </div>
+          <h3>Coração</h3>
+          <p>Coração temperado e queijo especial.</p>
+          <div class="price">R$ 52,90</div>
+          <a class="btn" href="#">Pedir no WhatsApp</a>
         </div>
       </div>
 
-      <!-- 8 -->
       <div class="pizza">
-        <img class="pizza-img" src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?q=80&w=1200&auto=format&fit=crop" alt="Strogonoff">
+        <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?q=80&w=1200&auto=format&fit=crop" alt="">
         <div class="pizza-content">
-          <h3><i class="fas fa-utensil-spoon"></i> Strogonoff</h3>
-          <p>Strogonoff de frango cremoso com champignon e batata palha crocante.</p>
-          <div class="pizza-footer">
-            <span class="price">R$ 53,90</span>
-            <a class="btn" href="#"><i class="fab fa-whatsapp"></i> Pedir</a>
-          </div>
+          <h3>Strogonoff</h3>
+          <p>Strogonoff cremoso coberto com batata palha.</p>
+          <div class="price">R$ 53,90</div>
+          <a class="btn" href="#">Pedir no WhatsApp</a>
         </div>
       </div>
 
-      <!-- 9 -->
       <div class="pizza">
-        <img class="pizza-img" src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?q=80&w=1200&auto=format&fit=crop" alt="Chocolate">
+        <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?q=80&w=1200&auto=format&fit=crop" alt="">
         <div class="pizza-content">
-          <h3><i class="fas fa-candy-cane"></i> Chocolate</h3>
-          <p>Chocolate ao leite derretido, coberto com granulado e raspas.</p>
-          <div class="pizza-footer">
-            <span class="price">R$ 42,90</span>
-            <a class="btn" href="#"><i class="fab fa-whatsapp"></i> Pedir</a>
-          </div>
+          <h3>Chocolate</h3>
+          <p>Chocolate ao leite com granulado.</p>
+          <div class="price">R$ 42,90</div>
+          <a class="btn" href="#">Pedir no WhatsApp</a>
         </div>
       </div>
 
-      <!-- 10 -->
       <div class="pizza">
-        <img class="pizza-img" src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?q=80&w=1200&auto=format&fit=crop" alt="Morango Chocolate">
+        <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?q=80&w=1200&auto=format&fit=crop" alt="">
         <div class="pizza-content">
-          <h3><i class="fas fa-strawberry"></i> Morango c/ Chocolate</h3>
-          <p>Chocolate cremoso, morangos frescos e calda de frutas vermelhas.</p>
-          <div class="pizza-footer">
-            <span class="price">R$ 48,90</span>
-            <a class="btn" href="#"><i class="fab fa-whatsapp"></i> Pedir</a>
-          </div>
+          <h3>Morango com Chocolate</h3>
+          <p>Chocolate cremoso com morangos frescos.</p>
+          <div class="price">R$ 48,90</div>
+          <a class="btn" href="#">Pedir no WhatsApp</a>
         </div>
       </div>
 
     </div>
+
   </div>
 
   <footer>
-    <i class="fas fa-pizza-slice"></i> Sua Pizza • <i class="fas fa-map-pin"></i> Rua das Massas, 101 • 
-    <i class="fas fa-phone-alt"></i> (11) 99999-9999 <br>
-    <span style="opacity:0.6;">© 2026 • Feito com <i class="fas fa-heart" style="color:#b31b1b;"></i> e muito queijo</span>
+    © 2026 Sua Pizza - Todos os direitos reservados
   </footer>
 
 </body>
