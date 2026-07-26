@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sua Pizza · A pizza que transforma sua noite</title>
+  <!-- Fonts -->
+  <link rel="icon" href="logo.jpg" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome (ícones) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #111;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ---------- HEADER ---------- */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 18px 0;
+      z-index: 1000;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      background: transparent;
+    }
+
+    .header.scrolled {
+      background: rgba(17, 17, 17, 0.92);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo-img {
+      height: 90px;
+      width: 180px;
+      display: block;
+      filter: brightness(1.1);
+      transition: filter 0.3s;
+    }
+    .logo-img:hover {
+      filter: brightness(1.3);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-menu a:hover {
+      color: #f4b400;
+    }
+
+    .btn-primary {
+      background: #d62828;
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 10px rgba(214, 40, 40, 0.3);
+      text-decoration: none;
+      display: inline-block;
+      font-family: 'Poppins', sans-serif;
+    }
+    .btn-primary:hover {
+      background: #b71c1c;
+      transform: scale(1.03);
+      box-shadow: 0 0 20px #d62828;
+    }
+
+    .btn-outline-gold {
+      background: transparent;
+      border: 2px solid #f4b400;
+      color: #f4b400;
+      padding: 10px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.25s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-outline-gold:hover {
+      background: #f4b400;
+      color: #111;
+    }
+
+    /* ---------- HERO (primeira tela) ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.pexels.com/photos/1653877/pexels-photo-1653877.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') center/cover no-repeat;
+      background-attachment: fixed;
+      padding: 120px 20px 60px;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      animation: fadeUp 1s ease;
+    }
+    .hero-content h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      color: #fff;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .hero-content h1 span {
+      color: #f4b400;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #f0f0f0;
+      margin-bottom: 2.2rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .hero-buttons .btn-primary {
+      font-size: 1.1rem;
+      padding: 14px 36px;
+    }
+    .hero-buttons .btn-outline-gold {
+      font-size: 1.1rem;
+      padding: 14px 36px;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* seções comuns */
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #fff;
+    }
+    .section-title span {
+      color: #f4b400;
+    }
+
+    /* destaques / promoções / cardápio */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .card-item {
+      background: #1a1a1a;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.15, 0.75, 0.45, 1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      border: 1px solid #2a2a2a;
+    }
+    .card-item:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+      border-color: #f4b400;
+    }
+    .card-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .card-item:hover img {
+      transform: scale(1.05);
+    }
+    .card-body {
+      padding: 20px 20px 25px;
+    }
+    .card-body h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #f4b400;
+    }
+    .card-body p {
+      color: #bbb;
+      font-size: 0.95rem;
+      margin: 8px 0 14px;
+    }
+    .card-body .price {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+    .card-body .btn-primary {
+      padding: 8px 24px;
+      font-size: 0.9rem;
+    }
+
+    /* promoções com desconto */
+    .promo-card .card-body .badge {
+      display: inline-block;
+      background: #d62828;
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    .promo-card .card-body .desconto {
+      background: #f4b400;
+      color: #111;
+      font-weight: 700;
+      padding: 2px 14px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    /* sobre */
+    .sobre-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+    .sobre-grid .sobre-img {
+      flex: 1 1 300px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.7);
+    }
+    .sobre-grid .sobre-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+    .sobre-grid .sobre-img:hover img {
+      transform: scale(1.03);
+    }
+    .sobre-grid .sobre-texto {
+      flex: 2 1 350px;
+    }
+    .sobre-texto h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #f4b400;
+    }
+    .sobre-texto p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #ccc;
+    }
+
+    /* avaliações */
+    .avaliacoes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+    .avaliacao-card {
+      background: #1e1e1e;
+      padding: 30px 20px;
+      border-radius: 30px;
+      text-align: center;
+      transition: 0.2s;
+      border: 1px solid #2a2a2a;
+    }
+    .avaliacao-card:hover {
+      border-color: #f4b400;
+    }
+    .avaliacao-card .stars {
+      color: #f4b400;
+      font-size: 1.8rem;
+      letter-spacing: 4px;
+      margin-bottom: 12px;
+    }
+    .avaliacao-card p {
+      font-size: 1rem;
+      color: #ddd;
+    }
+
+    /* localização - contatos centralizados */
+    .local-box {
+      background: #1a1a1a;
+      border-radius: 30px;
+      padding: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: center;
+      border: 1px solid #2a2a2a;
+      justify-content: center;
+    }
+
+    .local-box .mapa {
+      flex: 2 1 400px;
+      border-radius: 20px;
+      overflow: hidden;
+      min-height: 260px;
+    }
+    .local-box .mapa iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      border: 0;
+    }
+    .local-box .info-contato {
+      flex: 1 1 200px;
+      color: #ddd;
+      text-align: center;
+    }
+    .info-contato h3 {
+      color: #f4b400;
+      font-size: 1.6rem;
+      margin-bottom: 18px;
+    }
+    .info-contato p {
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .info-contato i {
+      color: #f4b400;
+      width: 24px;
+      font-size: 1.2rem;
+    }
+
+    /* rodapé - sem links úteis, com logo imagem */
+    .footer {
+      background: #0c0c0c;
+      padding: 50px 0 30px;
+      border-top: 1px solid #222;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+      justify-items: center;
+    }
+    .footer-grid h4 {
+      color: #f4b400;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .footer-grid .social {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+    .footer .social i {
+      font-size: 1.8rem;
+      color: #ccc;
+      transition: 0.2s;
+    }
+    .footer .social i:hover {
+      color: #f4b400;
+    }
+    .footer-copy {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #222;
+      color: #777;
+      font-size: 0.9rem;
+    }
+    .footer-logo {
+      text-align: center;
+    }
+    .footer-logo .logo-img {
+      height: 180px;
+      width: auto;
+      margin: 0 auto;
+      display: block;
+      filter: brightness(1.1);
+    }
+    .footer-logo p {
+      color: #aaa;
+      margin-top: 8px;
+    }
+
+    /* responsivo */
+    @media (max-width: 768px) {
+      .header .container {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .nav-menu {
+        gap: 1.2rem;
+        justify-content: center;
+      }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .sobre-grid {
+        flex-direction: column;
+      }
+      .local-box {
+        flex-direction: column;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      .hero-buttons .btn-primary,
+      .hero-buttons .btn-outline-gold {
+        padding: 12px 24px;
+        font-size: 1rem;
+      }
+      .logo-img {
+        height: 38px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="#">
+        <img src="logo.jpg" alt="Sua Pizza" class="logo-img" />
+      </a>
+      <nav class="nav-menu">
+        <a href="#inicio">Início</a>
+        <a href="#cardapio">Cardápio</a>
+        <a href="#promocoes">Promoções</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+        <a href="#" class="btn-primary" style="padding: 8px 20px;">Peça Agora</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <h1>A Pizza que transforma <span>qualquer noite</span> em um momento especial.</h1>
+      <p>Ingredientes selecionados, massa artesanal e entrega rápida.</p>
+      <div class="hero-buttons">
+        <a href="#cardapio" class="btn-primary"><i class="fas fa-pizza-slice"></i> Ver Cardápio</a>
+        <a href="#" class="btn-outline-gold"><i class="fab fa-whatsapp"></i> Pedir no WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTAQUES -->
+  <section id="destaques">
+    <div class="container">
+      <h2 class="section-title">🍕 <span>Nossos</span> Destaques</h2>
+      <div class="card-grid">
+        <div class="card-item">
+          <img src="https://images.pexels.com/photos/2619967/pexels-photo-2619967.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Calabresa Especial" />
+          <div class="card-body">
+            <h3>🔥 Calabresa Especial</h3>
+            <p>Calabresa fatiada, cebola, azeitonas e orégano.</p>
+            <div class="price">R$ 49,90</div>
+            <a href="#" class="btn-primary">Pedir</a>
+          </div>
+        </div>
+        <div class="card-item">
+          <img src="https://images.pexels.com/photos/3157553/pexels-photo-3157553.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Frango com Catupiry" />
+          <div class="card-body">
+            <h3>🍕 Frango com Catupiry</h3>
+            <p>Frango desfiado, catupiry cremoso e milho.</p>
+            <div class="price">R$ 54,90</div>
+            <a href="#" class="btn-primary">Pedir</a>
+          </div>
+        </div>
+        <div class="card-item">
+          <img src="https://images.pexels.com/photos/2619974/pexels-photo-2619974.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Quatro Queijos" />
+          <div class="card-body">
+            <h3>🧀 Quatro Queijos</h3>
+            <p>Mussarela, provolone, parmesão e gorgonzola.</p>
+            <div class="price">R$ 52,90</div>
+            <a href="#" class="btn-primary">Pedir</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMOÇÕES com porcentagem de desconto -->
+  <section id="promocoes" style="background: #161616;">
+    <div class="container">
+      <h2 class="section-title">🎉 <span>Promoções</span></h2>
+      <div class="card-grid">
+        <div class="card-item promo-card">
+          <img src="https://images.pexels.com/photos/1954677/pexels-photo-1954677.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Terça da Pizza" />
+          <div class="card-body">
+            <span class="badge">🔥 Terça da Pizza</span>
+            <span class="desconto">-20% OFF</span>
+            <h3>2 Pizzas Grandes</h3>
+            <p>Escolha dois sabores e pague apenas</p>
+            <div class="price" style="color:#f4b400;">R$ 89,90</div>
+            <a href="#" class="btn-primary">Aproveitar</a>
+          </div>
+        </div>
+        <div class="card-item promo-card">
+          <img src="https://images.pexels.com/photos/2600465/pexels-photo-2600465.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Combo Família" />
+          <div class="card-body">
+            <span class="badge">👨‍👩‍👧‍👦 Combo Família</span>
+            <span class="desconto">-15% OFF</span>
+            <h3>3 Pizzas + Refri 2L</h3>
+            <p>Perfeito para aproveitar com a família</p>
+            <div class="price" style="color:#f4b400;">R$ 129,90</div>
+            <a href="#" class="btn-primary">Aproveitar</a>
+          </div>
+        </div>
+        <div class="card-item promo-card">
+          <img src="https://images.pexels.com/photos/3157554/pexels-photo-3157554.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Massa Premium" />
+          <div class="card-body">
+            <span class="badge">✨ Massa Premium</span>
+            <span class="desconto">-25% OFF</span>
+            <h3>Pizza Especial + Bruschetta</h3>
+            <p>Massa fina e crocante, entrada inclusa</p>
+            <div class="price" style="color:#f4b400;">R$ 69,90</div>
+            <a href="#" class="btn-primary">Aproveitar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-img">
+          <img src="https://images.pexels.com/photos/5650031/pexels-photo-5650031.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Pizzaiolo" />
+        </div>
+        <div class="sobre-texto">
+          <h2>🍕 Nossa História</h2>
+          <p>
+            Desde 2010, a <strong>Sua Pizza</strong> nasceu da paixão por ingredientes frescos e receitas que unem família e amigos. 
+            Começamos em um pequeno forno a lenha e hoje somos referência em sabor, qualidade e atendimento. 
+            Cada pizza é preparada com massa artesanal, fermentação natural e ingredientes selecionados. 
+            Acreditamos que uma boa pizza transforma qualquer noite em um momento especial.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDÁPIO -->
+  <section id="cardapio" style="background: #121212;">
+    <div class="container">
+      <h2 class="section-title">📋 <span>Cardápio</span></h2>
+      <div class="card-grid">
+        <div class="card-item">
+          <img src="https://images.pexels.com/photos/2619970/pexels-photo-2619970.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Marguerita" />
+          <div class="card-body">
+            <h3>Marguerita</h3>
+            <p>Mussarela, tomate, manjericão e azeite.</p>
+            <div class="price">R$ 45,90</div>
+            <a href="#" class="btn-primary">Pedir</a>
+          </div>
+        </div>
+        <div class="card-item">
+          <img src="https://images.pexels.com/photos/2820764/pexels-photo-2820764.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Pepperoni" />
+          <div class="card-body">
+            <h3>Pepperoni</h3>
+            <p>Pepperoni, mussarela e orégano.</p>
+            <div class="price">R$ 51,90</div>
+            <a href="#" class="btn-primary">Pedir</a>
+          </div>
+        </div>
+        <div class="card-item">
+          <img src="https://images.pexels.com/photos/2791888/pexels-photo-2791888.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Portuguesa" />
+          <div class="card-body">
+            <h3>Portuguesa</h3>
+            <p>Presunto, ovos, cebola, azeitonas e ervilhas.</p>
+            <div class="price">R$ 48,90</div>
+            <a href="#" class="btn-primary">Pedir</a>
+          </div>
+        </div>
+        <div class="card-item">
+          <img src="https://images.pexels.com/photos/1156696/pexels-photo-1156696.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Napolitana" />
+          <div class="card-body">
+            <h3>Napolitana</h3>
+            <p>Mussarela, tomate, aliche e orégano.</p>
+            <div class="price">R$ 47,90</div>
+            <a href="#" class="btn-primary">Pedir</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVALIAÇÕES -->
+  <section id="avaliacoes">
+    <div class="container">
+      <h2 class="section-title">⭐ <span>Avaliações</span></h2>
+      <div class="avaliacoes-grid">
+        <div class="avaliacao-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"Melhor pizza da cidade."</p>
+          <small style="color:#888;">— Ana R.</small>
+        </div>
+        <div class="avaliacao-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"Entrega super rápida."</p>
+          <small style="color:#888;">— Carlos M.</small>
+        </div>
+        <div class="avaliacao-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"A massa é incrível."</p>
+          <small style="color:#888;">— Fernanda L.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCALIZAÇÃO / CONTATO (centralizado) -->
+  <section id="contato" style="background: #131313;">
+    <div class="container">
+      <h2 class="section-title">📍 <span>Contatos</span></h2>
+      <div class="local-box">
+        <div class="info-contato">
+          <h3><i class="fas fa-phone-alt" style="color:#f4b400;"></i> Contato</h3>
+          <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+          <p><i class="fab fa-whatsapp"></i> (11) 98888-8888</p>
+          <p><i class="far fa-clock"></i> Ter–Dom: 18h–23h</p>
+          <p><i class="fas fa-map-pin"></i> Av. Castelo Rá-tim-bum, 1000</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RODAPÉ com logo imagem -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-logo">
+          <img src="logo.jpg" alt="Sua Pizza" class="logo-img" />
+          <p>A pizza que transforma sua noite.</p>
+        </div>
+        <div>
+          <h4>Redes sociais</h4>
+          <div class="social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 Sua Pizza. Todos os direitos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCROLL HEADER -->
+  <script>
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
